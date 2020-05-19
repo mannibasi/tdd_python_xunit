@@ -3,9 +3,11 @@ class WasRun:
         self.wasRun = None
     def testMethod(self):
         self.wasRun = 1
+    def run(self):
+        self.testMethod()
 
 
 test = WasRun("testMethod")
 print(test.wasRun)
-test.testMethod()
+test.run()
 print(test.wasRun)
