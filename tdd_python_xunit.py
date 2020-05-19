@@ -1,3 +1,14 @@
+# TODO: Invoke test method
+# TODO: Invoke setUp first
+# TODO: Invoke tearDown afterward
+# TODO: Invoke tearDown even if method fails
+# TODO: Run multiple tests
+# TODO: Report collected results
+"""
+DONE:
+
+"""
+
 class WasRun:
     def __init__(self, name):
         self.wasRun = None
