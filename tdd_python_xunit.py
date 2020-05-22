@@ -1,4 +1,4 @@
-# TODO: Invoke tearDown even if method fails
+# TODO: Create TestSuite from a TestCase class
 # TODO: Run multiple tests
 # TODO: Report collected results
 """
@@ -6,6 +6,7 @@ DONE:
 # TODO: Invoke test method
 # TODO: Invoke setUp first
 # TODO: Invoke tearDown afterward
+# TODO: Invoke tearDown even if method fails
 # TODO: Log string in WasRun
 """
 
@@ -78,6 +79,12 @@ class TestCaseTest(TestCase):
         result.testStarted()
         result.testFailed()
         assert("1 run, 1 failed" == result.summary())
+    def testSuite(self):
+        suite = TestSuite()
+        suite.add(WasRun("testMethod"))
+        suite.add(WasRun("testBrokenMethod"))
+        result = suite.run()
+        assert("2 run, 1 failed" == result.summary())
 
 
 TestCaseTest("testTemplateMethod").run()
