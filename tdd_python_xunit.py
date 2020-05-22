@@ -1,4 +1,3 @@
-# TODO: Invoke setUp first
 # TODO: Invoke tearDown afterward
 # TODO: Invoke tearDown even if method fails
 # TODO: Run multiple tests
@@ -6,6 +5,7 @@
 """
 DONE:
 # TODO: Invoke test method
+# TODO: Invoke setUp first
 """
 
 class TestCase():
@@ -30,14 +30,14 @@ class WasRun(TestCase):
 
 
 class TestCaseTest(TestCase):
+    def setUp(self):
+        self.test = WasRun("testMethod")
     def testRunning(self):
-        test = WasRun("testMethod")
-        test.run()
-        assert(test.wasRun)
+        self.test.run()
+        assert(self.test.wasRun)
     def testSetUp(self):
-        test = WasRun("testMethod")
-        test.run()
-        assert(test.wasSetUp)
+        self.test.run()
+        assert(self.test.wasSetUp)
         
 TestCaseTest("testRunning").run()
 TestCaseTest("testSetUp").run()
