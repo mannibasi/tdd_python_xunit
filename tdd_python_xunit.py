@@ -1,4 +1,3 @@
-# TODO: Invoke tearDown afterward
 # TODO: Invoke tearDown even if method fails
 # TODO: Run multiple tests
 # TODO: Report collected results
@@ -6,6 +5,7 @@
 DONE:
 # TODO: Invoke test method
 # TODO: Invoke setUp first
+# TODO: Invoke tearDown afterward
 # TODO: Log string in WasRun
 """
 
@@ -26,10 +26,10 @@ class TestCase():
 class WasRun(TestCase):
     def __init__(self, name):
         TestCase.__init__(self, name)
-    def testMethod(self):
-        self.log = self.log + "testMethod "
     def setUp(self):
         self.log = "setUp "
+    def testMethod(self):
+        self.log = self.log + "testMethod "
     def tearDown(self):
         self.log = self.log + "tearDown "
 
