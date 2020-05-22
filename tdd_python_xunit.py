@@ -12,6 +12,9 @@ DONE:
 class TestCase():
     def __init__(self, name):
         self.name = name
+    def run(self):
+        method = getattr(self, self.name)
+        method()
 
 
 class WasRun(TestCase):
@@ -20,9 +23,6 @@ class WasRun(TestCase):
         TestCase.__init__(self, name)
     def testMethod(self):
         self.wasRun = 1
-    def run(self):
-        method = getattr(self, self.name)
-        method()
 
 
 test = WasRun("testMethod")
