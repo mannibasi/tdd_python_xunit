@@ -1,4 +1,3 @@
-# TODO: Log string in WasRun
 # TODO: Invoke tearDown afterward
 # TODO: Invoke tearDown even if method fails
 # TODO: Run multiple tests
@@ -7,6 +6,7 @@
 DONE:
 # TODO: Invoke test method
 # TODO: Invoke setUp first
+# TODO: Log string in WasRun
 """
 
 class TestCase():
@@ -35,7 +35,7 @@ class TestCaseTest(TestCase):
     def testTemplateMethod(self):
         test = WasRun("testMethod")
         test.run()
-        assert("setUp testMethod " == test.log)
+        assert("setUp testMethod tearDown " == test.log)
 
 
 TestCaseTest("testTemplateMethod").run()
