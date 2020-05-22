@@ -1,4 +1,3 @@
-# TODO: Invoke test method
 # TODO: Invoke setUp first
 # TODO: Invoke tearDown afterward
 # TODO: Invoke tearDown even if method fails
@@ -6,15 +5,18 @@
 # TODO: Report collected results
 """
 DONE:
-
+# TODO: Invoke test method
 """
 
 class TestCase():
     def __init__(self, name):
         self.name = name
     def run(self):
+        self.setUp()
         method = getattr(self, self.name)
         method()
+    def setUp(self):
+        pass
 
 
 class WasRun(TestCase):
@@ -23,6 +25,8 @@ class WasRun(TestCase):
         TestCase.__init__(self, name)
     def testMethod(self):
         self.wasRun = 1
+    def setUp(self):
+        self.wasSetUp = 1
 
 
 class TestCaseTest(TestCase):
@@ -31,7 +35,10 @@ class TestCaseTest(TestCase):
         assert(not test.wasRun)
         test.run()
         assert(test.wasRun)
-        print("Test completed")
-
+    def testSetUp(self):
+        test = WasRun("testMethod")
+        test.run()
+        assert(test.wasSetUp)
         
 TestCaseTest("testRunning").run()
+TestCaseTest("testSetUp").run()
