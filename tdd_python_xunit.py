@@ -1,6 +1,5 @@
-# TODO: Create TestSuite from a TestCase class
-# TODO: Run multiple tests
-# TODO: Report collected results
+#TODO: Catch and report setUp() errors
+#TODO: Create TestSuite from a TestCase class
 """
 DONE:
 # TODO: Invoke test method
@@ -8,6 +7,8 @@ DONE:
 # TODO: Invoke tearDown afterward
 # TODO: Invoke tearDown even if method fails
 # TODO: Log string in WasRun
+# TODO: Run multiple tests
+# TODO: Report collected results
 """
 
 class TestCase():
@@ -67,33 +68,30 @@ class TestFailureException(Exception):
 
 
 class TestCaseTest(TestCase):
+    def setUp(self):
+        self.result = TestResult()
     def testTemplateMethod(self):
-        result = TestResult()
         test = WasRun("testMethod")
-        test.run(result)
+        test.run(self.result)
         assert("setUp testMethod tearDown " == test.log)
     def testResult(self):
-        result = TestResult()
         test = WasRun("testMethod")
-        test.run(result)
-        assert("1 run, 0 failed" == result.summary())
+        test.run(self.result)
+        assert("1 run, 0 failed" == self.result.summary())
     def testFailedResult(self):
-        result = TestResult()
         test = WasRun("testBrokenMethod")
-        test.run(result)
-        assert("1 run, 1 failed" == result.summary())
+        test.run(self.result)
+        assert("1 run, 1 failed" == self.result.summary())
     def testFailedResultFormatting(self):
-        result = TestResult()
-        result.testStarted()
-        result.testFailed()
-        assert("1 run, 1 failed" == result.summary())
+        self.result.testStarted()
+        self.result.testFailed()
+        assert("1 run, 1 failed" == self.result.summary())
     def testSuite(self):
         suite = TestSuite()
-        result = TestResult()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
-        suite.run(result)
-        assert("2 run, 1 failed" == result.summary())
+        suite.run(self.result)
+        assert("2 run, 1 failed" == self.result.summary())
 
 
 suite = TestSuite()
