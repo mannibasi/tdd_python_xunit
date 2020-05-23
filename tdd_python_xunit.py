@@ -67,8 +67,6 @@ class TestFailureException(Exception):
 
 
 class TestCaseTest(TestCase):
-    def setUp(self):
-        self.test = WasRun("testMethod")
     def testTemplateMethod(self):
         result = TestResult()
         test = WasRun("testMethod")
